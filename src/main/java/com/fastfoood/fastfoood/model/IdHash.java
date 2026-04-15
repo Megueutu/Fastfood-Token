@@ -1,4 +1,4 @@
-package com.fastfoood.fastfoood.domain;
+package com.fastfoood.fastfoood.model;
 import java.util.UUID;
 
 public class IdHash {

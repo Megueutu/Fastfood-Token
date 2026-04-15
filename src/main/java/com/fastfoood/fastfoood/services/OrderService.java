@@ -1,19 +1,17 @@
 package com.fastfoood.fastfoood.services;
 
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
-import com.fastfoood.fastfoood.domain.Order;
+import com.fastfoood.fastfoood.repository.ReceiptRepository;
 
 import lombok.AllArgsConstructor;
 import lombok.RequiredArgsConstructor;
 
 @Service
-@RequiredArgsConstructor
 @AllArgsConstructor
 public class OrderService {
-    private OrderRepository orderRepository;
+    private ReceiptRepository receiptRepository;
 
-    public Order createOrder() {
-        return new Order();
-    }
+    
 }

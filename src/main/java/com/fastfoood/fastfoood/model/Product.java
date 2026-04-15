@@ -1,4 +1,4 @@
-package com.fastfoood.fastfoood.domain;
+package com.fastfoood.fastfoood.model;
 
 import lombok.Getter;
 
@@ -6,4 +6,5 @@ import lombok.Getter;
 public class Product {
     private String name;
     private double price;
+    private int qnty;
 }
