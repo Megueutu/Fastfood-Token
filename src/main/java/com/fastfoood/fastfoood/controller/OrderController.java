@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.fastfoood.fastfoood.model.Order;
+import com.fastfoood.fastfoood.domain.Order;
 import com.fastfoood.fastfoood.services.OrderService;
 
 import lombok.AllArgsConstructor;

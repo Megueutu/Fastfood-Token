@@ -1,4 +1,4 @@
-package com.fastfoood.fastfoood.model;
+package com.fastfoood.fastfoood.domain;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
@@ -17,7 +17,7 @@ public class Receipt extends Order {
 
     public Receipt(Order order) {
         super(order.getClientIdentification());
-        this.idReceipt = new IdHash(hashConfig.getReceiptPrefix());
+        this.idReceipt = hashFactory.createOrderHash();
         this.finalPrice = order.getFinalPrice();
     }
 

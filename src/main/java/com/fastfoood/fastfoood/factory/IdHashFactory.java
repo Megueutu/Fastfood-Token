@@ -3,7 +3,7 @@ package com.fastfoood.fastfoood.factory;
 import org.springframework.stereotype.Component;
 
 import com.fastfoood.fastfoood.configuration.IdHashConfiguration;
-import com.fastfoood.fastfoood.model.IdHash;
+import com.fastfoood.fastfoood.domain.IdHash;
 
 import lombok.AllArgsConstructor;
 

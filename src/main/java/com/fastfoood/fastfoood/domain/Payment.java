@@ -1,4 +1,4 @@
-package com.fastfoood.fastfoood.model;
+package com.fastfoood.fastfoood.domain;
 
 public enum Payment {
     CREDIT,

@@ -1,4 +1,4 @@
-package com.fastfoood.fastfoood.model;
+package com.fastfoood.fastfoood.domain;
 
 import com.fastfoood.fastfoood.factory.IdHashFactory;
 

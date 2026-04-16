@@ -1,4 +1,4 @@
-package com.fastfoood.fastfoood.model;
+package com.fastfoood.fastfoood.domain;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
