@@ -4,23 +4,20 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Configuration;
 
+import lombok.AllArgsConstructor;
 import lombok.Getter;
 
 @Getter
 @Configuration
+@AllArgsConstructor
 public class StorageConfiguration {
 
-    @Value("${storage.path}")
-    private String storagePath;
-
-    @Value("${storage.default-name}")
-    private String defaultName;
+    private final StorageProperties storageProperties;
 
     public Path getStoragePath() {
-        Path path = Path.of(storagePath);
+        Path path = Path.of(storageProperties.getPath());
         try {
             Files.createDirectories(path);
         } catch (IOException e) {

@@ -3,6 +3,9 @@ package com.fastfoood.fastfoood.model;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
+import com.fastfoood.fastfoood.configuration.IdHashConfiguration;
+import com.fastfoood.fastfoood.factory.IdHashFactory;
+
 import lombok.Getter;
 
 @Getter
@@ -10,9 +13,11 @@ public class Receipt extends Order {
     private IdHash idReceipt;
     private double finalPrice;
 
+    private IdHashFactory hashFactory;
+
     public Receipt(Order order) {
         super(order.getClientIdentification());
-        this.idReceipt = new IdHash("RC");
+        this.idReceipt = new IdHash(hashConfig.getReceiptPrefix());
         this.finalPrice = order.getFinalPrice();
     }
 
@@ -21,6 +26,6 @@ public class Receipt extends Order {
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("ddMM:HHmm-yyyy");
         String nowaFormat = nowaTime.format(formatter);
 
-        return String.format("RC-%s:%s", nowaFormat, this.idReceipt.getHash());
+        return String.format("%s:%s", nowaFormat, this.idReceipt.getHash());
     }
 }

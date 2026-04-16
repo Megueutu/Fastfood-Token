@@ -2,6 +2,8 @@ package com.fastfoood.fastfoood.model;
 
 import java.util.ArrayList;
 
+import com.fastfoood.fastfoood.factory.IdHashFactory;
+
 import lombok.Getter;
 import lombok.Setter;
 
@@ -12,8 +14,10 @@ public class Order {
     private String clientIdentification;
     private ArrayList<Product> productList;
 
+    private IdHashFactory hashFactory;
+
     public Order(String clientName) {
-        this.idOrder = new IdHash("OR");
+        this.idOrder = hashFactory.createOrderHash();
         this.clientIdentification = clientName;
         this.productList = new ArrayList<>();
     }
