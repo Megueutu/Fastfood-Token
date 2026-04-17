@@ -1,0 +1,22 @@
+{
+	"nodes":[
+		{"id":"989cd10861207d5e","type":"text","text":"Front-end","x":-125,"y":-30,"width":250,"height":60},
+		{"id":"fd929209f91c167b","type":"text","text":"dHash idOrder : new IdHash()\nString clientIdentification : String\nArrayList\\<Product\\> productList : new List\\<Product\\>\nStatus stats : PROGRESS","x":308,"y":140,"width":435,"height":120},
+		{"id":"4aca0873cb813e56","type":"text","text":"Pedido em Espera","x":860,"y":-30,"width":250,"height":60},
+		{"id":"ad94c58e56a75738","type":"text","text":"+ Possibilidade de Edição até a conclusão","x":860,"y":-240,"width":250,"height":80},
+		{"id":"c40bf624aff21bcb","type":"text","text":"\\# Checkout do Pedido","x":1460,"y":-30,"width":250,"height":60},
+		{"id":"abf126cdeed958e2","type":"text","text":"\\+ Novo Pedido","x":401,"y":-30,"width":250,"height":60},
+		{"id":"041f68a79a0d032f","type":"text","text":"Manipular os produtos no pedido (no caso, quais são e quantidades)","x":860,"y":-400,"width":250,"height":100},
+		{"id":"cc776fc5af73eae6","type":"text","text":"Lista de produtos com preços prontos (já direto do banco de dados)","x":401,"y":-400,"width":250,"height":100}
+	],
+	"edges":[
+		{"id":"85721ede6b8b2cb2","fromNode":"989cd10861207d5e","fromSide":"right","toNode":"abf126cdeed958e2","toSide":"left","label":"Dados do pedido"},
+		{"id":"fa4d84b906be8b63","fromNode":"abf126cdeed958e2","fromSide":"bottom","toNode":"fd929209f91c167b","toSide":"top"},
+		{"id":"d30f495333a87a30","fromNode":"abf126cdeed958e2","fromSide":"right","toNode":"4aca0873cb813e56","toSide":"left"},
+		{"id":"6023756f48f3507c","fromNode":"4aca0873cb813e56","fromSide":"top","toNode":"ad94c58e56a75738","toSide":"bottom"},
+		{"id":"fe742a2960536278","fromNode":"ad94c58e56a75738","fromSide":"right","toNode":"c40bf624aff21bcb","toSide":"left"},
+		{"id":"cafe6f4d7971af17","fromNode":"041f68a79a0d032f","fromSide":"left","toNode":"ad94c58e56a75738","toSide":"left"},
+		{"id":"0c5a4545aa6a8eec","fromNode":"ad94c58e56a75738","fromSide":"right","toNode":"041f68a79a0d032f","toSide":"right"},
+		{"id":"747eb65226f02dfa","fromNode":"cc776fc5af73eae6","fromSide":"top","toNode":"041f68a79a0d032f","toSide":"top"}
+	]
+}

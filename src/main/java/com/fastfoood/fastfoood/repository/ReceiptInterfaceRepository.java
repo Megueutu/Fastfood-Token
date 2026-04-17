@@ -16,7 +16,9 @@ public interface ReceiptInterfaceRepository {
     List<IdHash> deleteManyById(List<IdHash> listIdHash);
     
     Receipt findById(IdHash idHash);
+    Receipt findByFileName(String fileName);
+
     List<Receipt> findAll();
+    List<Receipt> findAllByFileName(List<String> listFileName);
     boolean verifyExistence(IdHash idHash);
 }
-
