@@ -1,27 +1,43 @@
 package com.fastfoood.fastfoood.controller;
 
-import org.springframework.http.HttpStatusCode;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.fastfoood.fastfoood.domain.IdHash;
 import com.fastfoood.fastfoood.domain.Order;
 import com.fastfoood.fastfoood.services.OrderService;
+import com.fastfoood.fastfoood.services.ReceiptService;
 
 import lombok.AllArgsConstructor;
+import org.springframework.web.bind.annotation.RequestBody;
+
 
 @AllArgsConstructor
 @RestController
-@RequestMapping("/")
+@RequestMapping("/order")
 public class OrderController {
     private OrderService orderService;
 
-    @PostMapping("/createOrder")
-    public ResponseEntity<Order> createOrder(String request) {
-        return ResponseEntity.status(200).body(new Order(request));
+    @PostMapping("/create")
+    public ResponseEntity<IdHash> createOrder(String request) {
+        try {
+            return ResponseEntity.status(200).body(new Order(request));
+        }
+        catch (Exception e) {
+            System.err.println("An error ocurried: " + e.getMessage());
+            return ResponseEntity.status(200).body(new Order(request));
+        }
     }
+
+    @GetMapping("/{id}")
+    public ResponseEntity<Order> reviewOrder(@RequestParam IdHash id) {
+        
+        return ResponseEntity.status((200).body(orderService.));
+    }
+    
 }
 
 

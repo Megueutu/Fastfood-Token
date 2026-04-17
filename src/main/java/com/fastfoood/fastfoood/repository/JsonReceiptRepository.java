@@ -7,7 +7,6 @@ import java.util.stream.Collectors;
 import org.springframework.stereotype.Repository;
 
 import java.io.FileWriter;
-import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 
@@ -21,12 +20,12 @@ import lombok.AllArgsConstructor;
 @Repository
 class JsonReceiptRepository implements ReceiptInterfaceRepository {
     private final Path filePath;
+    private final Gson gson = new Gson();
 
     public IdHash save(Receipt receipt) {
         try {
             validateStoragePath();        
             
-            Gson gson = new Gson();
             String fileName = receipt.getFileName() + ".json";
             FileWriter writer = new FileWriter(fileName);
             IdHash nowaIdHash = receipt.getIdOrder();
@@ -44,14 +43,14 @@ class JsonReceiptRepository implements ReceiptInterfaceRepository {
         }
 
         catch (Exception e) {
-            System.err.println("An error ocurried: " + e);
+            System.err.println("An error ocurried: " + e.getMessage());
             return null;
         }
     }
 
 
 
-    public IdHash deleteById(IdHash idHash) { return deleteById(idHash); }
+    public IdHash deleteById(IdHash idHash) { return deleteById(idHash.getHash()); }
     public IdHash deleteById(String idHash) {
         try {
             Path file = Files.list(filePath)
@@ -65,8 +64,8 @@ class JsonReceiptRepository implements ReceiptInterfaceRepository {
             return new IdHash(idHash);
         }
 
-        catch (IOException e) {
-            throw new RuntimeException("Erro ao deletar receipt: " + e.getMessage());
+        catch (Exception e) {
+            throw new RuntimeException("An error ocurried: " + e.getMessage());
         }
     }
 
@@ -99,7 +98,7 @@ class JsonReceiptRepository implements ReceiptInterfaceRepository {
         
         for (Receipt receipt : listReceipt) {
             try {
-                IdHash trySaving = deleteById(receipt.getIdReceipt()); // Talvez haja erro de lógica por conta do IdReceipt e IdOrder (acredito que não)
+                IdHash trySaving = deleteById(receipt.getIdReceipt());
                 if (trySaving != null) {
                     sucessfulList.add(trySaving);
                 }
@@ -163,7 +162,6 @@ class JsonReceiptRepository implements ReceiptInterfaceRepository {
     public Receipt findById(IdHash idHash) { return findById(idHash.getHash()); }
     public Receipt findById(String idHash) {
         try {
-            Gson gson = new Gson();
             Path file = Files.list(filePath)
                 .filter(path -> path.getFileName().toString().contains(idHash))
                 .findFirst()
@@ -175,8 +173,8 @@ class JsonReceiptRepository implements ReceiptInterfaceRepository {
             return gson.fromJson(json, Receipt.class);
         }
         
-        catch (IOException e) {
-            throw new RuntimeException("Erro ao buscar receipt: " + e.getMessage());
+        catch (Exception e) {
+            throw new RuntimeException("An error ocurried: " + e.getMessage());
         }
     }
 
@@ -185,7 +183,7 @@ class JsonReceiptRepository implements ReceiptInterfaceRepository {
     public List<Receipt> findAll() {
         List<Receipt> allReceipts = new ArrayList<>();
 
-        for (String nowaHash : pushAllFilesHash()) {
+        for (String nowaHash : getAllFilesName()) {
             allReceipts.add(findById(nowaHash));
         }
 
@@ -194,7 +192,39 @@ class JsonReceiptRepository implements ReceiptInterfaceRepository {
 
 
 
-    private List<String> pushAllFilesHash() {
+    public Receipt findByFileName(String fileName) {
+        try {
+            Path file = filePath.resolve(fileName);
+
+            if (!Files.exists(file)) throw new Exception("File does not exists.");
+
+            String json = Files.readString(file);
+            return gson.fromJson(json, Receipt.class);
+
+        }
+        
+        catch (Exception e) {
+            System.err.println("An error ocurried: " + e.getMessage());
+            return null;
+        }
+    }
+
+
+
+    public List<Receipt> findAllByFileName(List<String> fileName) {
+        try {
+            List<Receipt> allReceipts = new ArrayList<>();
+            return allReceipts;
+        }
+
+        catch (Exception e) {
+            return null;
+        }
+    }
+
+
+
+    private List<String> getAllFilesName() {
         try {
             List<String> fileNames = Files.list(filePath)
                 .map(path -> path.getFileName().toString())
@@ -203,7 +233,7 @@ class JsonReceiptRepository implements ReceiptInterfaceRepository {
         }
 
         catch (Exception e) {
-            System.err.println("An error ocurried: " + e);
+            System.err.println("An error ocurried: " + e.getMessage());
             return null;
         }
     }

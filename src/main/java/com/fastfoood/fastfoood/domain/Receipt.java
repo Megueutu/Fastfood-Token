@@ -2,8 +2,6 @@ package com.fastfoood.fastfoood.domain;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
-
-import com.fastfoood.fastfoood.configuration.IdHashConfiguration;
 import com.fastfoood.fastfoood.factory.IdHashFactory;
 
 import lombok.Getter;

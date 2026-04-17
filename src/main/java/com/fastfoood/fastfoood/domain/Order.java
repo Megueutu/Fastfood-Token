@@ -13,6 +13,7 @@ public class Order {
     private IdHash idOrder;
     private String clientIdentification;
     private ArrayList<Product> productList;
+    private Status stats;
 
     private IdHashFactory hashFactory;
 
